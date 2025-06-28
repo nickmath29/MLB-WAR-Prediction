@@ -49,7 +49,7 @@ def main():
     pitching.to_csv("pitching.csv")
     pitching = pitching.groupby("IDfg", group_keys=False).filter(lambda x: x.shape[0] > 1)
     
-    pitching = pitching.groupby("IDfg", group_keys=False).apply(next_season())
+    pitching = pitching.groupby("IDfg", group_keys=False).apply(next_season)
 
     null_count = pitching.isnull().sum()
 
