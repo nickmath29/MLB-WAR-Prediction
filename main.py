@@ -6,6 +6,7 @@ from sklearn.linear_model import Ridge
 from sklearn.feature_selection import SequentialFeatureSelector
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import mean_squared_error
 
 START = 2002
 END = 2023
@@ -83,6 +84,12 @@ def main():
     
     # Training the model
     predictions = backtest(pitching, rr, predictors)
+    
+    # Evaluating the model
+    pitching["Next_WAR"].describe()
+    
+    mse = mean_squared_error(predictions["actual"], predictions["predictions"])
+    rmse = mse ** 0.5
     
 
     return
